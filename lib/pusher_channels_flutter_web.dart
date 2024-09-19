@@ -127,7 +127,12 @@ class PusherChannelsFlutterWeb {
     final Map<String, dynamic> msg = dartify<Map<String, dynamic>>(jsMessage);
     final String event = msg['event'] ?? '';
     final String channel = msg['channel'] ?? '';
-    final Map<String, dynamic> data = msg['data'] ?? {};
+    Map<String, dynamic> data = {};
+    try{
+      data = msg['data'] ?? {};
+    } catch (e) {
+      data = {};
+    }
     String? userId = data['user_id'];
     final Map<String, dynamic>? userInfo = data['user_info'];
 
